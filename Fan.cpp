@@ -2,13 +2,27 @@
 #include <stdexcept>
 #include <cmath>
 
-Fan::Fan() {
-    rpm = 0;
-}
-
-Fan::Fan(Fan&& other) : rpm(std::move(other.rpm)) {}
+Fan::Fan() : rpm{} {}
+Fan::~Fan() {}
 
 Fan::Fan(const Fan& other) : rpm(other.rpm) {}
+Fan::Fan(Fan&& other) : rpm(other.rpm) {
+    other.rpm = 0;
+}
+
+Fan& Fan::operator=(const Fan& rhs) {
+    if (this != &rhs) {
+        rpm = rhs.rpm;
+    }
+    return *this;
+}
+Fan& Fan::operator=(Fan&& rhs) {
+    if (this != &rhs) {
+        rpm = rhs.rpm;
+        rhs.rpm = 0;
+    }
+    return *this;
+}
 
 void Fan::setSpeed(int newRpm) {
     if ((newRpm < 1000 and newRpm != 0) or newRpm > 3000) {
@@ -24,7 +38,7 @@ void Fan::setSpeed(int newRpm) {
     }
 }
 
-int Fan::getSpeed() {
+int Fan::getSpeed() const {
     return rpm;
 }
 
