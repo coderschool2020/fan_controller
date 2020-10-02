@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
-#include "external/catch.hpp"
-#include "Fan.hpp"
+
+#include <catch/catch.hpp>
+#include "../Fan.hpp"
 
 TEST_CASE("Fan - setSpeed() behavior", "[Fan]") {
 
