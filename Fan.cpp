@@ -20,13 +20,3 @@ void Fan::setSpeed(int newRpm) {
 int Fan::getSpeed() {
     return rpm;
 }
-
-bool Fan::disable() {
-    rpm = 0;
-    return true;
-}
-
-bool Fan::enable() {
-    rpm = 1000;
-    return true;
-}
